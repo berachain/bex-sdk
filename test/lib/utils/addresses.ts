@@ -55,6 +55,10 @@ export const TOKENS: Record<number, Record<string, TestToken>> = {
             address: '0xae78736cd615f374d3085123a210448e74fc6393',
             decimals: 18,
         },
+        gearboxUSDC: {
+            address: '0xda00000035fef4082F78dEF6A8903bee419FbF8E',
+            decimals: 6,
+        },
     },
     [ChainId.OPTIMISM]: {
         FRAX: {
@@ -284,8 +288,8 @@ export const POOLS: Record<number, Record<string, TestPool>> = {
             slot: 0,
         },
         MOCK_BAL_DAI_POOL: {
-            address: '0xe69b70a86a4e1fd33da95693a1ae12be1c26c8ea', // TODO
-            id: '0xe69b70a86a4e1fd33da95693a1ae12be1c26c8ea',
+            address: '0x3e099b16beeae7cfcf8a0921941394f1a9b00e0e',
+            id: '0x3e099b16beeae7cfcf8a0921941394f1a9b00e0e',
             type: PoolType.Weighted,
             decimals: 18,
             slot: 0,
@@ -317,6 +321,14 @@ export const POOLS: Record<number, Record<string, TestPool>> = {
             address: '0x59fa488dda749cdd41772bb068bb23ee955a6d7a',
             id: '0x59fa488dda749cdd41772bb068bb23ee955a6d7a',
             type: PoolType.Stable,
+            decimals: 18,
+            slot: 0,
+        },
+        // weth, stataUSDT
+        MOCK_BOOSTED_POOL_WETH: {
+            address: '0xf5a25990da505a9d4c3e0d876f3951e9edf9abc3',
+            id: '0xf5a25990da505a9d4c3e0d876f3951e9edf9abc3',
+            type: PoolType.Weighted,
             decimals: 18,
             slot: 0,
         },

@@ -114,3 +114,14 @@ export type InitPoolAmounts = {
 export type InitPoolAmountsComposableStable = InitPoolAmounts & {
     amountsIn: bigint[];
 };
+
+export type BufferState = {
+    wrappedToken: {
+        address: Address;
+        decimals: number;
+    };
+    underlyingToken: {
+        address: Address;
+        decimals: number;
+    };
+};

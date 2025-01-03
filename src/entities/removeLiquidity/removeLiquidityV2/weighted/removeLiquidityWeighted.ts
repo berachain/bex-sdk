@@ -18,6 +18,7 @@ import {
     RemoveLiquidityBase,
     RemoveLiquidityBuildCallOutput,
     RemoveLiquidityInput,
+    RemoveLiquidityKind,
     RemoveLiquidityQueryOutput,
     RemoveLiquidityRecoveryInput,
 } from '../../types';
@@ -28,6 +29,10 @@ export class RemoveLiquidityWeighted implements RemoveLiquidityBase {
         input: RemoveLiquidityInput,
         poolState: PoolState,
     ): Promise<RemoveLiquidityQueryOutput> {
+        if (input.kind === RemoveLiquidityKind.Recovery) {
+            return this.queryRemoveLiquidityRecovery(input, poolState);
+        }
+
         const sortedTokens = getSortedTokens(poolState.tokens, input.chainId);
         const amounts = getAmountsQuery(sortedTokens, input);
 
@@ -71,8 +76,9 @@ export class RemoveLiquidityWeighted implements RemoveLiquidityBase {
             chainId: input.chainId,
         };
     }
-
-    public async queryRemoveLiquidityRecovery(
+    // RemoveLiquidityRecovery doesn't have a proper query method on v2, so
+    // this method replicates SC behavior off-chain
+    private async queryRemoveLiquidityRecovery(
         input: RemoveLiquidityRecoveryInput,
         poolState: PoolState,
     ): Promise<RemoveLiquidityQueryOutput> {

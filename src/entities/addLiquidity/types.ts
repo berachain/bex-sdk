@@ -94,7 +94,7 @@ export type AddLiquidityBuildCallOutput = {
 export type AddLiquidityBoostedV3BuildCallOutput = {
     callData: Hex;
     to: Address;
-    args: readonly [`0x${string}`, bigint[], bigint, false, `0x${string}`]
+    args: readonly [Hex, bigint[], bigint, boolean, Hex]
     value: bigint;
     minBptOut: TokenAmount;
     maxAmountsIn: TokenAmount[];
