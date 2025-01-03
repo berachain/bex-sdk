@@ -57,7 +57,7 @@ This class provides functionality to:
 
 ### Example
 
-See the [addLiqudity example](/examples/addLiquidity/addLiquidity.ts).
+See the [addLiqudity example](/examples/addLiquidity/).
 
 ### Constructor
 
