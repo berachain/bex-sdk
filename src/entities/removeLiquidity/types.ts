@@ -103,10 +103,6 @@ export interface RemoveLiquidityBase {
         input: RemoveLiquidityInput,
         poolState: PoolState,
     ): Promise<RemoveLiquidityQueryOutput>;
-    queryRemoveLiquidityRecovery(
-        input: RemoveLiquidityRecoveryInput,
-        poolState: PoolState,
-    ): Promise<RemoveLiquidityQueryOutput>;
     buildCall(
         input: RemoveLiquidityBuildCallInput,
     ): RemoveLiquidityBuildCallOutput;

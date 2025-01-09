@@ -1,5 +1,74 @@
 # @balancer/sdk
 
+## 1.0.2
+
+### Patch Changes
+
+- eb5be5d: fix: update sonic multicall3 creation blocknumber
+- eb5be5d: fix: override multicall3 for sonic in viem chain definition
+- 1b47dfb: Skip flaky test
+
+## 1.0.1
+
+### Patch Changes
+
+- e5a0311: Bump composable stable pool factories to v6
+- 79c8144: Refactor swaps v3 integration tests
+- 1c58adc: Add support for Sonic chain
+
+## 1.0.0
+
+### Major Changes
+
+- b3d61f2: Remove `queryRemoveLiquidityRecovery` from `RemoveLiquidity`. Please use `query` with `RemoveLiquidityRecoveryInput` instead.
+
+### Minor Changes
+
+- 8aa2fb9: Add native token support to AddLiquidityNested and AddLiquidityBoosted
+- a6ebf0d: Add support for InitBuffer
+- 15567ec: Add support for addLiquidityBuffer
+
+### Patch Changes
+
+- e3fdf6c: Add extra integration tests for gyro pools
+
+## 0.33.5
+
+### Patch Changes
+
+- 378a8f0: Fix price impact with near proportional inputs for AddLiquidityNested
+
+## 0.33.4
+
+### Patch Changes
+
+- 20aeefc: chore: debug v2 pool state multicall errors
+
+## 0.33.3
+
+### Patch Changes
+
+- 6ec44e1: Update to main deployments (Mainnet, Gnosis and Sepolia)
+- 688d857: Add permit and permit2 signature examples
+
+## 0.33.2
+
+### Patch Changes
+
+- 863822c: Use correct index for underlying token redeem call.
+
+## 0.33.1
+
+### Patch Changes
+
+- b2b9411: Enable add liquidity proportional for stable pools on v3
+
+## 0.33.0
+
+### Minor Changes
+
+- 2d192ff: Update to testnet deployment 11
+
 ## 0.32.2
 
 ### Patch Changes

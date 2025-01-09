@@ -25,17 +25,15 @@ const USDT = TOKENS[chainId].USDT_AAVE;
 const DAI = TOKENS[chainId].DAI_AAVE;
 const WETH = TOKENS[chainId].WETH;
 
+/**
+ * FIXME: tests are here just as a sanity check. We should find a way to
+ * properly validate results.
+ */
 describe('PriceImpact V3', () => {
     let rpcUrl: string;
     beforeAll(async () => {
         ({ rpcUrl } = await startFork(ANVIL_NETWORKS.SEPOLIA));
     });
-    /**
-     * FIXME: Test pending a reference value for comparison/validation, because
-     * there is no corresponding method in previous SDK to validate the result.
-     * We should be able to infer that it is correct because it follows the same
-     * ABA approach as price impact for other actions (addLiquidity, swap, etc.)
-     */
     describe('Full Boosted Pool Boosted Pool AddLiquidity', () => {
         test('Close to proportional', async () => {
             const addLiquidityInput: AddLiquidityBoostedUnbalancedInput = {
@@ -61,7 +59,7 @@ describe('PriceImpact V3', () => {
                     addLiquidityInput,
                     boostedPool_USDC_USDT,
                 );
-            const priceImpactSpot = PriceImpactAmount.fromDecimal('0.000055');
+            const priceImpactSpot = PriceImpactAmount.fromDecimal('0.000042');
             expect(priceImpactABA.decimal).eq(priceImpactSpot.decimal);
         });
 
@@ -90,7 +88,7 @@ describe('PriceImpact V3', () => {
                     boostedPool_USDC_USDT,
                 );
             const priceImpactSpot =
-                PriceImpactAmount.fromDecimal('0.0005707385');
+                PriceImpactAmount.fromDecimal('0.0005511004');
             expect(priceImpactABA.decimal).eq(priceImpactSpot.decimal);
         });
 
@@ -113,7 +111,7 @@ describe('PriceImpact V3', () => {
                     addLiquidityInput,
                     boostedPool_USDC_USDT,
                 );
-            const priceImpactSpot = PriceImpactAmount.fromDecimal('0.000476');
+            const priceImpactSpot = PriceImpactAmount.fromDecimal('0.000492');
             expect(priceImpactABA.decimal).eq(priceImpactSpot.decimal);
         });
     });
@@ -143,7 +141,7 @@ describe('PriceImpact V3', () => {
                     addLiquidityInput,
                     partialBoostedPool_USDT_stataDAI,
                 );
-            const priceImpactSpot = PriceImpactAmount.fromDecimal('0.000016');
+            const priceImpactSpot = PriceImpactAmount.fromDecimal('0.0000045');
             expect(priceImpactABA.decimal).eq(priceImpactSpot.decimal);
         });
 
@@ -171,7 +169,8 @@ describe('PriceImpact V3', () => {
                     addLiquidityInput,
                     partialBoostedPool_USDT_stataDAI,
                 );
-            const priceImpactSpot = PriceImpactAmount.fromDecimal('0.00566425');
+            const priceImpactSpot =
+                PriceImpactAmount.fromDecimal('0.000396375');
             expect(priceImpactABA.decimal).eq(priceImpactSpot.decimal);
         });
     });
@@ -198,8 +197,9 @@ describe('PriceImpact V3', () => {
                 addLiquidityInput,
                 nestedWithBoostedPool,
             );
-            const priceImpactSpot =
-                PriceImpactAmount.fromDecimal('0.00206614703619');
+            const priceImpactSpot = PriceImpactAmount.fromDecimal(
+                '0.005213821423105922',
+            );
             expect(priceImpactABA.decimal).eq(priceImpactSpot.decimal);
         });
     });

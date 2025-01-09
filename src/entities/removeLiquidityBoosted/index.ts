@@ -4,15 +4,13 @@ import {
     RemoveLiquidityBase,
     RemoveLiquidityKind,
     RemoveLiquidityBuildCallOutput,
-    RemoveLiquidityQueryOutput,
-    RemoveLiquidityRecoveryInput,
 } from '../removeLiquidity/types';
 
 import { Permit } from '@/entities/permitHelper';
 
 import { balancerCompositeLiquidityRouterAbi } from '@/abi';
 
-import { PoolState, PoolStateWithUnderlyings } from '@/entities/types';
+import { PoolStateWithUnderlyings } from '@/entities/types';
 
 import { TokenAmount } from '@/entities/tokenAmount';
 import { Token } from '@/entities/token';
@@ -31,13 +29,6 @@ import { getSortedTokens } from '../utils';
 
 export class RemoveLiquidityBoostedV3 implements RemoveLiquidityBase {
     private readonly inputValidator: InputValidator = new InputValidator();
-
-    public async queryRemoveLiquidityRecovery(
-        _input: RemoveLiquidityRecoveryInput,
-        _poolState: PoolState,
-    ): Promise<RemoveLiquidityQueryOutput> {
-        throw new Error('Not implemented');
-    }
 
     public async query(
         input: RemoveLiquidityBoostedProportionalInput,
@@ -111,7 +102,7 @@ export class RemoveLiquidityBoostedV3 implements RemoveLiquidityBase {
                 input.poolId,
                 input.bptIn.amount,
                 amounts.minAmountsOut,
-                false,
+                input.wethIsEth ?? false,
                 input.userData,
             ],
         });
@@ -120,7 +111,7 @@ export class RemoveLiquidityBoostedV3 implements RemoveLiquidityBase {
             callData: callData,
             to: BALANCER_COMPOSITE_LIQUIDITY_ROUTER[input.chainId],
             value: 0n, // always has 0 value
-            maxBptIn: input.bptIn, //TokenAmount
+            maxBptIn: input.bptIn,
             minAmountsOut: amounts.minAmountsOut.map((amount, i) => {
                 return TokenAmount.fromRawAmount(
                     input.amountsOut[i].token,
