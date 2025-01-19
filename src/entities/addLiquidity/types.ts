@@ -6,7 +6,7 @@ import {
     AddLiquidityV2BuildCallInput,
     AddLiquidityV2QueryOutput,
 } from './addLiquidityV2/types';
-import { Permit2} from '../permit2Helper';
+import { Permit2 } from '../permit2Helper';
 import { parseAddLiquidityArgs } from '../utils';
 
 export enum AddLiquidityKind {
@@ -94,7 +94,7 @@ export type AddLiquidityBuildCallOutput = {
 export type AddLiquidityBoostedV3BuildCallOutput = {
     callData: Hex;
     to: Address;
-    args: readonly [Hex, bigint[], bigint, boolean, Hex]
+    args: readonly [Hex, bigint[], bigint, boolean, Hex];
     value: bigint;
     minBptOut: TokenAmount;
     maxAmountsIn: TokenAmount[];
