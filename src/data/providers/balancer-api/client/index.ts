@@ -1,4 +1,4 @@
-import { ChainId } from '../../../../utils';
+import { ChainId } from "../../../../utils";
 
 export class BalancerApiClient {
     apiUrl: string;
@@ -13,13 +13,19 @@ export class BalancerApiClient {
         query: string;
         variables?: any;
     }) {
+        const headers = {
+            "Content-Type": "application/json",
+            ChainId: this.chainId.toString(),
+        };
+
+        if (process.env.BEX_API_KEY) {
+            headers["x-api-key"] = process.env.BEX_API_KEY;
+        }
+
         const response = await fetch(this.apiUrl, {
-            method: 'post',
+            method: "post",
             body: JSON.stringify(requestQuery),
-            headers: {
-                'Content-Type': 'application/json',
-                ChainId: this.chainId.toString(),
-            },
+            headers,
         });
         return response.json();
     }
