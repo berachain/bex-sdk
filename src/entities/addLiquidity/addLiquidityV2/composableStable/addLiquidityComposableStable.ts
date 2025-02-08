@@ -111,7 +111,7 @@ export class AddLiquidityComposableStable implements AddLiquidityBase {
             callData,
             args,
             to: VAULT[input.chainId],
-            value: getValue(input.amountsIn, !!input.wethIsEth),
+            value: getValue(input.amountsIn, !!input.wethIsEth, input.slippage),
             minBptOut: TokenAmount.fromRawAmount(
                 input.bptOut.token,
                 amounts.minimumBpt,
