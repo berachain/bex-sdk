@@ -9,7 +9,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "1.0.2",
+  "version": "1.1.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -30,7 +30,7 @@
   "dependencies": {
     "decimal.js-light": "^2.5.1",
     "lodash.clonedeep": "^4.5.0",
-    "viem": "^2.21.55"
+    "viem": "2.22.23"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.5.2",
