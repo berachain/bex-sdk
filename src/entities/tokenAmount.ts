@@ -1,9 +1,9 @@
-import _Decimal from 'decimal.js-light';
-import { parseUnits } from 'viem';
-import { InputAmount } from '../types';
-import { DECIMAL_SCALES } from '../utils/constants';
-import { WAD } from '../utils/math';
-import { Token } from './token';
+import _Decimal, { Decimal } from "decimal.js-light";
+import { parseUnits } from "viem";
+import { InputAmount } from "../types";
+import { DECIMAL_SCALES } from "../utils/constants";
+import { WAD } from "../utils/math";
+import { Token } from "./token";
 
 export type BigintIsh = bigint | string | number;
 
@@ -81,10 +81,24 @@ export class TokenAmount {
     }
 
     public toSignificant(significantDigits = 6): string {
-        return new _Decimal(this.amount.toString())
+        // There is a bug in b-sdk where too small numbers are being converted to scientific notation but api does not support it
+
+        let result = new _Decimal(this.amount.toString())
             .div(new _Decimal(this.decimalScale.toString()))
             .toDecimalPlaces(significantDigits)
-            .toString();
+            .toFixed(significantDigits);
+
+        if (result.includes(".")) {
+            while (result.at(-1) === "0") {
+                result = result.slice(0, -1);
+            }
+        }
+
+        if (result.at(-1) === ".") {
+            result = result.slice(0, -1);
+        }
+
+        return result;
     }
 
     public toInputAmount(): InputAmount {
