@@ -30,7 +30,7 @@
   "dependencies": {
     "decimal.js-light": "^2.5.1",
     "lodash.clonedeep": "^4.5.0",
-    "viem": "2.22.23"
+    "viem": "2.23.3"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.5.2",
@@ -45,7 +45,7 @@
     "ts-node": "^10.9.2",
     "tsup": "^8.0.1",
     "typescript": "^5.7.2",
-    "vite": "^5.2.10",
+    "vite": "^5.4.14",
     "vite-tsconfig-paths": "^4.2.3",
     "vitest": "3.0.5"
   },
