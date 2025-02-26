@@ -1,10 +1,10 @@
-import { TokenAmount } from '@/entities';
-import { Path } from '@/entities/swap/paths/types';
-import { SwapKind } from '@/types';
-import { API_CHAIN_NAMES, ChainId } from '@/utils';
-import { Address } from 'viem';
+import { TokenAmount } from "@/entities";
+import { Path } from "@/entities/swap/paths/types";
+import { SwapKind } from "@/types";
+import { API_CHAIN_NAMES, ChainId } from "@/utils";
+import { Address } from "viem";
 
-import { BalancerApiClient } from '../../client';
+import { BalancerApiClient } from "../../client";
 
 export type SorInput = {
     chainId: ChainId;
@@ -22,6 +22,10 @@ export type SorSwapResult = {
         error: string | null;
         priceImpact: string;
     };
+    /**
+     * Total swap fee in percentage
+     */
+    totalSwapFee: number;
 };
 
 // FIXME: these types should exist within the GQL schema
@@ -52,7 +56,7 @@ export type SorRoute = {
 
 export class SorSwapPaths {
     readonly sorSwapPathQuery = `#graphql
-  query MyQuery($chain: GqlChain!, $swapType: GqlSorSwapType!, $swapAmount: AmountHumanReadable!, $tokenIn: String!, $tokenOut: String!) {
+  query SorSwapPaths($chain: GqlChain!, $swapType: GqlSorSwapType!, $swapAmount: AmountHumanReadable!, $tokenIn: String!, $tokenOut: String!) {
     sorGetSwapPaths(
       swapAmount: $swapAmount
       chain: $chain
@@ -67,6 +71,7 @@ export class SorSwapPaths {
         error
         priceImpact
       }
+      totalSwapFee
       swapAmount
       paths {
         inputAmountRaw
@@ -98,7 +103,7 @@ export class SorSwapPaths {
   }
 `;
     readonly sorSwapPathQueryWithVersion = `#graphql
-  query MyQuery($chain: GqlChain!, $swapType: GqlSorSwapType!, $swapAmount: AmountHumanReadable!, $tokenIn: String!, $tokenOut: String!, $useProtocolVersion: Int!) {
+  query SorSwapPaths($chain: GqlChain!, $swapType: GqlSorSwapType!, $swapAmount: AmountHumanReadable!, $tokenIn: String!, $tokenOut: String!, $useProtocolVersion: Int!) {
     sorGetSwapPaths(
       swapAmount: $swapAmount
       chain: $chain
@@ -114,6 +119,7 @@ export class SorSwapPaths {
         error
         priceImpact
       }
+      totalSwapFee
       swapAmount
       paths {
         inputAmountRaw
@@ -155,8 +161,8 @@ export class SorSwapPaths {
             ), // Must use human scale
             swapType:
                 sorInput.swapKind === SwapKind.GivenIn
-                    ? 'EXACT_IN'
-                    : 'EXACT_OUT',
+                    ? "EXACT_IN"
+                    : "EXACT_OUT",
             tokenIn: sorInput.tokenIn,
             tokenOut: sorInput.tokenOut,
         };
@@ -174,8 +180,8 @@ export class SorSwapPaths {
         const paths: Path[] = data.sorGetSwapPaths.paths;
         const priceImpact: SorPriceImpact = data.sorGetSwapPaths.priceImpact;
         const routes: SorRoute[] = data.sorGetSwapPaths.routes;
-
-        return { paths, priceImpact, routes };
+        const totalSwapFee = Number(data.sorGetSwapPaths.totalSwapFee);
+        return { paths, priceImpact, routes, totalSwapFee };
     }
 
     private mapGqlChain(chainId: ChainId): string {
