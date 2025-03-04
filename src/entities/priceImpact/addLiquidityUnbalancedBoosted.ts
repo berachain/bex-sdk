@@ -54,9 +54,7 @@ export async function addLiquidityUnbalancedBoosted(
         amountsIn = queryResult.amountsIn;
         bptOut = queryResult.bptOut;
     } catch (err) {
-        throw new Error(
-            `addLiquidity operation will fail at SC level with user defined input.\n${err}`,
-        );
+        throw err;
     }
     const poolTokens = amountsIn.map((a) => a.token);
 

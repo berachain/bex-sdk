@@ -47,9 +47,7 @@ describe('PriceImpact Errors V3', () => {
                 addLiquidityInput,
                 boostedPool_USDC_USDT,
             ),
-        ).rejects.toThrowError(
-            'operation will fail at SC level with user defined input.',
-        );
+        ).rejects.toThrowError('ContractFunctionExecutionError');
     });
 
     test('Expect Error for failing remove input', async () => {
@@ -67,8 +65,6 @@ describe('PriceImpact Errors V3', () => {
 
         await expect(() =>
             PriceImpact.removeLiquidity(removeLiquidityInput, weightedWethBal),
-        ).rejects.toThrowError(
-            'removeLiquidity operation will fail at SC level with user defined input',
-        );
+        ).rejects.toContain('BAL#306');
     });
 });

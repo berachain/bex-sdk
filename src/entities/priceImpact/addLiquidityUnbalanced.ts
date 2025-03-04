@@ -31,9 +31,7 @@ export const addLiquidityUnbalanced = async (
         bptOut = queryResult.bptOut;
         poolTokens = amountsIn.map((a) => a.token);
     } catch (err) {
-        throw new Error(
-            `addLiquidityUnbalanced operation will fail at SC level with user defined input.\n${err}`,
-        );
+        throw err;
     }
 
     // simulate removing liquidity to get amounts out

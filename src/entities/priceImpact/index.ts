@@ -47,9 +47,7 @@ export class PriceImpact {
             const queryResult = await addLiquidity.query(input, poolState);
             amountsIn = queryResult.amountsIn;
         } catch (err) {
-            throw new Error(
-                `addLiquiditySingleToken operation will fail at SC level with user defined input.\n${err}`,
-            );
+            throw err;
         }
 
         // simulate removing liquidity to get amounts out
@@ -156,9 +154,7 @@ export class PriceImpact {
             amountsOut = queryResult.amountsOut;
             bptIn = queryResult.bptIn;
         } catch (err) {
-            throw new Error(
-                `removeLiquidity operation will fail at SC level with user defined input.\n${err}`,
-            );
+            throw err;
         }
 
         // simulate adding liquidity to get amounts in
@@ -206,9 +202,7 @@ export class PriceImpact {
             amountsOut = queryResult.amountsOut;
             bptAmountIn = queryResult.bptAmountIn;
         } catch (err) {
-            throw new Error(
-                `removeLiquidity operation will fail at SC level with user defined input.\n${err}`,
-            );
+            throw err;
         }
 
         // simulate adding liquidity to get amounts in
