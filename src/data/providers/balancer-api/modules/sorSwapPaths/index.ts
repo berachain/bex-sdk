@@ -1,10 +1,10 @@
-import { TokenAmount } from "@/entities";
-import { Path } from "@/entities/swap/paths/types";
-import { SwapKind } from "@/types";
-import { API_CHAIN_NAMES, ChainId } from "@/utils";
-import { Address } from "viem";
+import { TokenAmount } from '@/entities';
+import { Path } from '@/entities/swap/paths/types';
+import { SwapKind } from '@/types';
+import { API_CHAIN_NAMES, ChainId } from '@/utils';
+import { Address } from 'viem';
 
-import { BalancerApiClient } from "../../client";
+import { BalancerApiClient } from '../../client';
 
 export type SorInput = {
     chainId: ChainId;
@@ -161,8 +161,8 @@ export class SorSwapPaths {
             ), // Must use human scale
             swapType:
                 sorInput.swapKind === SwapKind.GivenIn
-                    ? "EXACT_IN"
-                    : "EXACT_OUT",
+                    ? 'EXACT_IN'
+                    : 'EXACT_OUT',
             tokenIn: sorInput.tokenIn,
             tokenOut: sorInput.tokenOut,
         };

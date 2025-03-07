@@ -1,9 +1,9 @@
-import _Decimal, { Decimal } from "decimal.js-light";
-import { parseUnits } from "viem";
-import { InputAmount } from "../types";
-import { DECIMAL_SCALES } from "../utils/constants";
-import { WAD } from "../utils/math";
-import { Token } from "./token";
+import _Decimal, { Decimal } from 'decimal.js-light';
+import { parseUnits } from 'viem';
+import { InputAmount } from '../types';
+import { DECIMAL_SCALES } from '../utils/constants';
+import { WAD } from '../utils/math';
+import { Token } from './token';
 
 export type BigintIsh = bigint | string | number;
 
@@ -88,13 +88,13 @@ export class TokenAmount {
             .toDecimalPlaces(significantDigits)
             .toFixed(significantDigits);
 
-        if (result.includes(".")) {
-            while (result.at(-1) === "0") {
+        if (result.includes('.')) {
+            while (result.at(-1) === '0') {
                 result = result.slice(0, -1);
             }
         }
 
-        if (result.at(-1) === ".") {
+        if (result.at(-1) === '.') {
             result = result.slice(0, -1);
         }
 

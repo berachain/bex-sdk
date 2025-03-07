@@ -1,62 +1,60 @@
 {
-  "name": "@berachain-foundation/berancer-sdk",
-  "description": "SDK for interacting with the Balancer protocol",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/berachain/berancer-sdk"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "version": "1.1.1",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "typings": "dist/index.d.ts",
-  "files": [
-    "dist/"
-  ],
-  "scripts": {
-    "build": "tsup",
-    "format": "biome format --write .",
-    "lint": "dpdm -T ./src && biome check .",
-    "test": "vitest dev",
-    "test:ci": "vitest run",
-    "changeset": "changeset",
-    "changeset:release": "pnpm build && changeset publish",
-    "example": "npx tsx ./examples/lib/executeExample.ts"
-  },
-  "dependencies": {
-    "decimal.js-light": "^2.5.1",
-    "lodash.clonedeep": "^4.5.0",
-    "viem": "2.23.3"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.9.4",
-    "@changesets/cli": "2.28.1",
-    "@types/async-retry": "^1.4.9",
-    "@types/lodash.clonedeep": "^4.5.9",
-    "@types/node": "^18.19.79",
-    "@viem/anvil": "^0.0.6",
-    "dotenv": "16.4.7",
-    "dpdm": "^3.14.0",
-    "pino-pretty": "^10.3.1",
-    "tsup": "8.4.0",
-    "typescript": "5.8.2",
-    "vite": "^5.4.14",
-    "vite-tsconfig-paths": "4.3.2",
-    "vitest": "3.0.8"
-  },
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "default": "./dist/index.mjs"
+    "name": "@berachain-foundation/berancer-sdk",
+    "description": "SDK for interacting with the Balancer protocol",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/berachain/berancer-sdk"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "version": "1.1.1",
+    "main": "dist/index.js",
+    "module": "dist/index.mjs",
+    "types": "dist/index.d.ts",
+    "typings": "dist/index.d.ts",
+    "files": ["dist/"],
+    "scripts": {
+        "build": "tsup",
+        "format": "biome format --write .",
+        "lint": "dpdm -T ./src && biome check .",
+        "test": "vitest dev",
+        "test:ci": "vitest run",
+        "changeset": "changeset",
+        "changeset:release": "pnpm build && changeset publish",
+        "example": "npx tsx ./examples/lib/executeExample.ts"
+    },
+    "dependencies": {
+        "decimal.js-light": "^2.5.1",
+        "lodash.clonedeep": "^4.5.0",
+        "viem": "2.23.3"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "1.9.4",
+        "@changesets/cli": "2.28.1",
+        "@types/async-retry": "^1.4.9",
+        "@types/lodash.clonedeep": "^4.5.9",
+        "@types/node": "^18.19.79",
+        "@viem/anvil": "^0.0.6",
+        "dotenv": "16.4.7",
+        "dpdm": "^3.14.0",
+        "pino-pretty": "^10.3.1",
+        "tsup": "8.4.0",
+        "typescript": "5.8.2",
+        "vite": "^5.4.14",
+        "vite-tsconfig-paths": "4.3.2",
+        "vitest": "3.0.8"
+    },
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.mjs",
+            "default": "./dist/index.mjs"
+        }
+    },
+    "packageManager": "pnpm@9.1.4",
+    "engines": {
+        "node": ">=18.x"
     }
-  },
-  "packageManager": "pnpm@9.1.4",
-  "engines": {
-    "node": ">=18.x"
-  }
 }

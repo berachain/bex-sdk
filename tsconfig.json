@@ -1,5 +1,4 @@
-
-  {
+{
     "include": ["src", "test", "examples"],
     "compilerOptions": {
         "target": "es2020",
@@ -25,6 +24,6 @@
         "paths": {
             "@/*": ["./src/*"],
             "@berachain-foundation/berancer-sdk": ["src/index.ts"]
-        },
+        }
     }
 }
