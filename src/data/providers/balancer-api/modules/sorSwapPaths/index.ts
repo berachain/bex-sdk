@@ -26,6 +26,7 @@ export type SorSwapResult = {
      * Total swap fee in percentage
      */
     totalSwapFee: number;
+    returnAmount: string;
 };
 
 // FIXME: these types should exist within the GQL schema
@@ -181,7 +182,8 @@ export class SorSwapPaths {
         const priceImpact: SorPriceImpact = data.sorGetSwapPaths.priceImpact;
         const routes: SorRoute[] = data.sorGetSwapPaths.routes;
         const totalSwapFee = Number(data.sorGetSwapPaths.totalSwapFee);
-        return { paths, priceImpact, routes, totalSwapFee };
+        const returnAmount = data.sorGetSwapPaths.returnAmount;
+        return { paths, priceImpact, routes, totalSwapFee, returnAmount };
     }
 
     private mapGqlChain(chainId: ChainId): string {
