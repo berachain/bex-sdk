@@ -28,8 +28,7 @@
             },
             "style": {
                 "noNonNullAssertion": "off",
-                "useShorthandArrayType": "error",
-                "useImportType": "off"
+                "useShorthandArrayType": "error"
             },
             "suspicious": {
                 "noArrayIndexKey": "off",
@@ -41,7 +40,6 @@
     "javascript": {
         "formatter": {
             "quoteStyle": "single",
-            "trailingCommas": "all",
             "semicolons": "always"
         }
     }
