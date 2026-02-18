@@ -1,4 +1,4 @@
-import _Decimal, { Decimal } from 'decimal.js-light';
+import _Decimal from 'decimal.js-light';
 import { parseUnits } from 'viem';
 import { InputAmount } from '../types';
 import { DECIMAL_SCALES } from '../utils/constants';
