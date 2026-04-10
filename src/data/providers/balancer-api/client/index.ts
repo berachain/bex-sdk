@@ -21,13 +21,13 @@ export class BalancerApiClient {
 
         if (process.env.BEX_API_KEY) {
             headers['x-api-key'] = process.env.BEX_API_KEY;
-
-            headers['x-graphql-client-name'] =
-                `berachain.b-sdk.${process.env.NEXT_RUNTIME || 'browser'}`;
-            headers['x-graphql-client-version'] =
-                // package.json verison
-                `${packageJson.version}`;
         }
+
+        headers['x-graphql-client-name'] =
+            `berachain.b-sdk.${process.env.NEXT_RUNTIME || 'browser'}`;
+        headers['x-graphql-client-version'] =
+            // package.json verison
+            `${packageJson.version}`;
 
         const response = await fetch(this.apiUrl, {
             method: 'post',
